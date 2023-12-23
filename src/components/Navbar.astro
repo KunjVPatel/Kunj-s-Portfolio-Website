@@ -1,0 +1,103 @@
+---
+import '../styles.css';
+---
+
+<nav class="navbar-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <!-- Logo and Home Link -->
+                <div class="flex-shrink-0">
+                    <img src="/Brain_GrayScale.png" class="mr-3 h-6 sm:h-9" alt="Logo"/> 
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="/" class="navbar-text"><b>KunjML</b></a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/projects" class="navbar-text"><b>Projects</b></a>
+                        <a href="/blogs" class="navbar-text"><b>Blogs</b></a>
+                        <a href="/resume" class="navbar-text"><b>Resume</b></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="ml-4 flex items-center md:ml-6">
+                    <!-- Dark Mode Toggle Slider -->
+                    <div class="toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Other Navbar Items -->
+                    <a href="https://www.linkedin.com/in/kunj-patel7/" class="navbar-text" target="_blank" rel="noopener noreferrer">
+                        <img src="src/assets/light-mode-linkedin.svg" class="inline h-6 w-6 theme-icon" alt="LinkedIn" data-theme-light="src/assets/light-mode-linkedin.svg" data-theme-dark="src/assets/dark-mode-linkedin.svg"/>
+                    </a>
+
+                    <a href="https://github.com/KunjVPatel" class="navbar-text" target="_blank" rel="noopener noreferrer">
+                        <img src="src/assets/light-github-mark.svg" class="inline h-6 w-6 theme-icon" alt="GitHub" data-theme-light="src/assets/light-github-mark.svg" data-theme-dark="src/assets/dark-github-mark.svg"/>
+                    </a>
+                    
+                    <a href="https://discord.gg/vgUuAMTzuN" class="navbar-text" target="_blank" rel="noopener noreferrer">
+                        <img src="src/assets/light-mode-discord.svg" class="inline h-6 w-6 theme-icon" alt="Discord" data-theme-light="src/assets/light-mode-discord.svg" data-theme-dark="src/assets/dark-mode-discord.svg"/>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            <img src="src/assets/light-mode-menu.svg" class="inline h-6 w-6 theme-icon" alt="Menu" data-theme-light="src/assets/light-mode-menu.svg" data-theme-dark="src/assets/dark-mode-menu.svg"/>
+                        </button>
+                        
+                        <div class="dropdown-content">
+                            <a href="/projects">Projects</a>
+                            <a href="/blogs">Blogs</a>
+                            <a href="/resume">Resume</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleCheckbox = document.getElementById('theme-toggle');
+        const themeIcons = document.querySelectorAll('.theme-icon');
+
+        // Function to update SVG icons based on the theme
+        function updateThemeIcons(theme) {
+            themeIcons.forEach(icon => {
+                icon.src = icon.getAttribute(theme === 'dark' ? 'data-theme-dark' : 'data-theme-light');
+            });
+        }
+
+        // Function to switch themes
+        function switchTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('themePreference', 'dark');
+                updateThemeIcons('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('themePreference', 'light');
+                updateThemeIcons('light');
+            }
+        }
+
+        // Initialize theme on page load
+        const storedThemePreference = localStorage.getItem('themePreference');
+        const prefersDarkMode = storedThemePreference === 'dark' || (!storedThemePreference && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        themeToggleCheckbox.checked = prefersDarkMode;
+        switchTheme(prefersDarkMode);
+
+        // Toggle theme on switch change
+        themeToggleCheckbox.addEventListener('change', () => {
+            switchTheme(themeToggleCheckbox.checked);
+        });
+    });
+</script>
