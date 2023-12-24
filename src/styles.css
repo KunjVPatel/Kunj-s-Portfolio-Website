@@ -86,14 +86,14 @@ body, h1, h2, p {
     background-color: white;
     transition: .4s;
     border-radius: 50%;
-    background-image: url('src/assets/light-mode.svg'); /* icon for light mode */
+    background-image: url('../assets/light-mode.svg'); /* icon for light mode */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .dark .slider:before {
-    background-image: url('src/assets/dark-mode.svg'); /* icon for dark mode */
+    background-image: url('../assets/dark-mode.svg'); /* icon for dark mode */
 }
 
 input:checked + .slider {
