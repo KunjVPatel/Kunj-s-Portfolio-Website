@@ -23,7 +23,7 @@ The objective of this blog is to explain the project ASU Class Scraper, where I 
 
 Every semester, Almost Every Student I know has had to wake up at 6:00 AM in order to get the Classes that they need, and even if you wake up early it does not guarantee getting the class. Classes fill up quickly, and many students have to delay their academic progress
 
-This problem does not apply if you are part of Barrett though. The honors college has early registration (A friend of mine was very gleeful for not having to deal with lack of classes).
+This problem does not apply if you are part of Barrett though. The honors college has early registration (A friend of mine was very gleeful for not having to deal with lack of class space).
 
 ## The Approach
 
