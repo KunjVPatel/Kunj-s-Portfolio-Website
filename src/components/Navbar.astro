@@ -62,39 +62,46 @@ import '../styles.css';
 </nav>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleCheckbox = document.getElementById('theme-toggle') as HTMLInputElement | null;
-    const themeIcons = document.querySelectorAll('.theme-icon');
-
-    function updateThemeIcons(theme) {
-        themeIcons.forEach(icon => {
-            const img = icon as HTMLImageElement;  // Ensuring icon is treated as an image element.
-            img.src = img.getAttribute(theme === 'dark' ? 'data-theme-dark' : 'data-theme-light');
-        });
-    }
-
-    function switchTheme(isDark) {
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('themePreference', 'dark');
-            updateThemeIcons('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('themePreference', 'light');
-            updateThemeIcons('light');
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get the checkbox for theme toggling and assert the correct type
+        const themeToggleCheckbox = document.getElementById('theme-toggle') as HTMLInputElement | null;
+    
+        // Query all theme icons and ensure each is handled as an HTMLImageElement
+        const themeIcons = document.querySelectorAll('.theme-icon');
+    
+        // Function to update the source of each theme icon based on the current theme
+        function updateThemeIcons(theme: string): void {
+            themeIcons.forEach(icon => {
+                const img = icon as HTMLImageElement; // Assert the correct type
+                img.src = img.getAttribute(theme === 'dark' ? 'data-theme-dark' : 'data-theme-light')!;
+            });
         }
-    }
-
-    if (themeToggleCheckbox) {
-        const prefersDarkMode = localStorage.getItem('themePreference') === 'dark' || 
-                                (!localStorage.getItem('themePreference') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        themeToggleCheckbox.checked = prefersDarkMode;
-        switchTheme(prefersDarkMode);
-
-        themeToggleCheckbox.addEventListener('change', () => {
-            switchTheme(themeToggleCheckbox.checked);
-        });
-    }
-});
-
-</script>
+    
+        // Function to switch the theme; adds/removes a class from the document element
+        function switchTheme(isDark: boolean): void {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('themePreference', 'dark');
+                updateThemeIcons('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('themePreference', 'light');
+                updateThemeIcons('light');
+            }
+        }
+    
+        // Initial setup: Check stored preferences or system settings for theme
+        if (themeToggleCheckbox) {
+            const prefersDarkMode = localStorage.getItem('themePreference') === 'dark' || 
+                                    (!localStorage.getItem('themePreference') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            themeToggleCheckbox.checked = prefersDarkMode; // Set the checkbox based on the preference
+            switchTheme(prefersDarkMode); // Apply the initial theme based on the preference
+    
+            // Listen for changes on the checkbox to toggle theme
+            themeToggleCheckbox.addEventListener('change', () => {
+                switchTheme(themeToggleCheckbox.checked);
+            });
+        }
+    });
+    </script>
+    
