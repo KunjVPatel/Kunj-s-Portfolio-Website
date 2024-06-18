@@ -6,34 +6,43 @@ import Heading from '@/components/Heading.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { MarkdownInstance } from 'astro/dist/@types/astro';
 
-export async function getStaticPaths() {
-    // Attempt to load all markdown posts
-    const allPosts = await Astro.glob('../posts/*.md');
+// Define the expected return type for getStaticPaths
+interface StaticPath {
+    params: { tag: string };
+    props: {
+        posts: MarkdownInstance<Record<string, any>>[];
+    };
+}
 
-    // Check if any posts are available
+interface StaticPathsReturn {
+    paths: StaticPath[];
+    fallback: boolean;
+}
+
+export async function getStaticPaths(): Promise<StaticPathsReturn> {
+    const allPosts: MarkdownInstance<Record<string, any>>[] = await Astro.glob('../posts/*.md');
+
     if (allPosts.length === 0) {
-        // Return an empty array to avoid errors
         return { paths: [], fallback: false };
     }
 
-    // Extract tags from all posts
     const allTags: Set<string> = new Set(
-        allPosts.map((post: MarkdownInstance<Record<string, any>>) => post.frontmatter.tags).flat()
+        allPosts.map(post => post.frontmatter.tags).flat()
     );
 
-    // Map each tag to a static path
     return {
         paths: [...allTags].map(tag => ({
             params: { tag },
             props: {
-                posts: allPosts.filter((post: MarkdownInstance<Record<string, any>>) => post.frontmatter.tags.includes(tag))
+                posts: allPosts.filter(post => post.frontmatter.tags.includes(tag))
             }
         })),
-        fallback: false // This could be true if you want to handle new tags at runtime, otherwise false for static only
+        fallback: false
     };
 }
+
 interface Props {
-	posts: MarkdownInstance<Record<string, any>>[];
+    posts: MarkdownInstance<Record<string, any>>[];
 }
 
 const { tag } = Astro.params;
@@ -44,18 +53,18 @@ const { posts } = Astro.props;
 ---
 
 <Base head={{ title, description }}>
-	<Section>
-		<Heading title={`Posts with #${tag}`} />
-	</Section>
-	<Section>
-		{
-			posts
-				.filter((post: any) => post.frontmatter.tags?.includes(tag))
-				.map((post: any) => (
-					<div class="mb-4 basis-1 last:mb-0">
-						<Card post={post} />
-					</div>
-				))
-		}
-	</Section>
+    <Section>
+        <Heading title={`Posts with #${tag}`} />
+    </Section>
+    <Section>
+        {
+            posts
+                .filter(post => post.frontmatter.tags?.includes(tag))
+                .map(post => (
+                    <div class="mb-4 basis-1 last:mb-0">
+                        <Card post={post} />
+                    </div>
+                ))
+        }
+    </Section>
 </Base>
