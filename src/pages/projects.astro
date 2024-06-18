@@ -1,7 +1,10 @@
 ---
-// Import statements for components or scripts
+// Import Navbar component and styles
 import Navbar from '../components/Navbar.astro';
 import '../styles.css';
+
+// Dynamically import markdown content and metadata
+import postContent from './src/pages/blogs/Class_Scraper.md';
 ---
 
 <html lang="en">
@@ -11,50 +14,33 @@ import '../styles.css';
   <title>Projects | KunjML</title>
   <link rel="icon" type="svg" href="../assets/brain-logo.svg"/>
   <link rel="stylesheet" href="/styles.css">
-  <!-- Include Tailwind via CDN or your build process -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="dark:bg-gray-800 dark:text-white">
+<body class="dark:bg-800 dark:text-white">
   <Navbar />
   <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
     <h1 class="text-3xl font-bold mb-10 text-center">Projects</h1>
-        <!-- <section class="mb-10">
-          <h2 class="text-2xl font-semibold mb-6">Web Scraping</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg border border-gray-300 border-solid">
-              <img src="../project-img/Asu-Search-Main.png" alt="" class="rounded-t-lg w-full">
-              <h2 class="text-xl font-semibold mb-2">ASU Class Scraper</h2>
-              <div class="mb-4">
-                <p>Scraping ASU Class Search Website to Find Open Classes</p>
-              </div>
-              <div class="flex justify-between items-center">
-                <a href="#link-to-code" class="text-blue-600 hover:underline">Code</a>
-                <a href="#link-to-demo" class="text-blue-600 hover:underline">Live demo</a>
-              </div>
-            </div>
-
-            
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-6">Web Scraping</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg border border-gray-300 border-solid">
+          <img src="../project-img/Asu-Search-Main.png" alt="" class="rounded-t-lg w-full">
+          <h2 class="text-xl font-semibold mb-2">ASU Class Scraper</h2>
+          <div class="mb-4">
+            <p>Scraping ASU Class Search Website to Find Open Classes</p>
           </div>
-          
-        </section>       -->
-<!-- 
-        <section class="mb-10">
-          <h2 class="text-2xl font-semibold mb-6">Devil Data Science</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg border border-gray-300 border-solid">
-              <img src="../project-img/Asu-Search-Main.png" alt="" class="rounded-t-lg w-full">
-              <h2 class="text-xl font-semibold mb-2">ASU Class Scraper</h2>
-              <div class="mb-4">
-                <p>Scraping ASU Class Search Website to Find Open Classes</p>
-              </div>
-              <div class="flex justify-between items-center">
-                <a href="#link-to-code" class="text-blue-600 hover:underline">Code</a>
-                <a href="#link-to-demo" class="text-blue-600 hover:underline">Live demo</a>
-              </div>
-            </div>
-          </section> -->
-      <!-- Repeat for other projects -->
-    </div>
+          <div class="flex justify-between items-center">
+            <a href="https://github.com/KunjVPatel/ASU-Class-Searcher" class="text-blue-600 hover:underline" target="_blank">Code</a>
+            <!-- Directly use a known slug or static link -->
+            <a href="blogs/Class_Scraper" class="text-blue-600 hover:underline">Read Article</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Markdown content rendered -->
+    <article class="prose lg:prose-xl mx-auto mt-8">
+      <div innerHTML={{ html: postContent.content }} />
+    </article>
   </main>
 </body>
 </html>

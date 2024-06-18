@@ -1,0 +1,45 @@
+---
+import Navbar from '@/components/Navbar.astro';
+export interface Props {
+    head: {
+        title: string;
+        description: string;
+    };
+}
+
+const {} = Astro.props as Props;
+---
+
+<html lang="en" class="bg-stone-100 dark:bg-dark-bg">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KunjML</title>
+        <link rel="icon" type="svg" href="../assets/brain-logo.svg"/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css">
+        <script>
+            if (
+                localStorage.getItem('dark-mode') === 'true' ||
+                (!('dark-mode' in localStorage) &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                localStorage.setItem('dark-mode', 'true');
+                document.documentElement.classList.add('dark');
+            } else {
+                localStorage.setItem('dark-mode', 'false');
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+    </head>
+    <body class="flex min-h-screen flex-col font-mono text-950 dark:text-white">
+        <Navbar />
+        <div class="flex-1">
+            <slot />
+        </div>
+    </body>
+</html>
+<style is:global>
+    :root {
+    }
+</style>

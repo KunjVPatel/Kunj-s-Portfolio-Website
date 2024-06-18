@@ -228,7 +228,7 @@ input:checked + .slider:before {
 }
 
 .carousel-container::-webkit-scrollbar-track-piece:start {
-    background: #29AB87;
+    background: #1c1e1d;
 }
 
 .carousel-slide {
@@ -287,4 +287,3 @@ input:checked + .slider:before {
         width: 90%; /* Larger width for smaller screens */
     }
 }
-
