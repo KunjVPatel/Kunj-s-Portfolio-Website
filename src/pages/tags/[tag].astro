@@ -6,12 +6,9 @@ import Heading from '@/components/Heading.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { MarkdownInstance } from 'astro/dist/@types/astro';
 
-// Define the expected return type for getStaticPaths
 interface StaticPath {
     params: { tag: string };
-    props: {
-        posts: MarkdownInstance<Record<string, any>>[];
-    };
+    props: { posts: MarkdownInstance<Record<string, any>>[] };
 }
 
 interface StaticPathsReturn {

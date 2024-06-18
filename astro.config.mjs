@@ -5,6 +5,9 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import vercelStatic from '@astrojs/vercel/static';
 import react from '@astrojs/react';
 import sitemap from "@astrojs/sitemap";
+
+import vercel from '@astrojs/vercel/serverless';
+
 const options = {
   // Specify the theme to use or a custom theme json, in our case
   // it will be a moonlight-II theme from
@@ -38,10 +41,11 @@ export default defineConfig({
 		remarkPlugins: [remarkReadingTime]
 	},
 	integrations: [tailwind(), react(), sitemap()],
-	output: 'static',
 	adapter: vercelStatic({
+    output: 'server',
 		webAnalytics: {
 			enabled: true
 		}
 	})
 });
+
