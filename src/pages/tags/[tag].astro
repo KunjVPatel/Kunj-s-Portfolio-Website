@@ -17,25 +17,33 @@ interface StaticPathsReturn {
 }
 
 export async function getStaticPaths(): Promise<StaticPathsReturn> {
-    const allPosts: MarkdownInstance<Record<string, any>>[] = await Astro.glob('../posts/*.md');
+    try {
+        const path = '../../posts/*.md';  // Adjust the path based on your project structure
+        const allPosts: MarkdownInstance<Record<string, any>>[] = await Astro.glob(path);
 
-    if (allPosts.length === 0) {
+        if (allPosts.length === 0) {
+            console.warn(`No posts found at path: ${path}`);
+            return { paths: [], fallback: false };
+        }
+
+        const allTags: Set<string> = new Set(
+            allPosts.map(post => post.frontmatter.tags).flat()
+        );
+
+        return {
+            paths: [...allTags].map(tag => ({
+                params: { tag },
+                props: {
+                    posts: allPosts.filter(post => post.frontmatter.tags.includes(tag))
+                }
+            })),
+            fallback: false
+        };
+    } catch (error) {
+        console.error("Error occurred in getStaticPaths:", error);
+        // Return empty paths to allow the build to proceed despite the error
         return { paths: [], fallback: false };
     }
-
-    const allTags: Set<string> = new Set(
-        allPosts.map(post => post.frontmatter.tags).flat()
-    );
-
-    return {
-        paths: [...allTags].map(tag => ({
-            params: { tag },
-            props: {
-                posts: allPosts.filter(post => post.frontmatter.tags.includes(tag))
-            }
-        })),
-        fallback: false
-    };
 }
 
 interface Props {
