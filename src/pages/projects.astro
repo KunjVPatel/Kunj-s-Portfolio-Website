@@ -39,7 +39,7 @@ import postContent from './src/pages/blogs/Class_Scraper.md';
     </section>
     <!-- Markdown content rendered -->
     <article class="prose lg:prose-xl mx-auto mt-8">
-      <div innerHTML={{ html: postContent.content }} />
+      <div dangerouslySetInnerHTML={{ __html: postContent.content }} />
     </article>
   </main>
 </body>
