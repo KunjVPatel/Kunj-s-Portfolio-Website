@@ -1,5 +1,5 @@
 ---
-layout: ./src/layouts/post.astro
+layout: /src/layouts/post.astro
 title: "ASU Class Scraper Project"
 pubDate: 2024-06-18
 description: "This is the first post of my new Astro blog, where I explain the working of this project"
