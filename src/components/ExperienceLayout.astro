@@ -1,6 +1,6 @@
 ---
   const jobs = [
-    { id: 'dataMinePurdue', company: 'The Data Mine', role: 'Undergraduate Data Science Researcher', period: 'Aug 2023 - May 2024', description: 'Collaborated with Molecular Stethoscope to analyze and develop cf-mRNA based diagnostics. Focused on evaluating dataset robustness and developing synthetic datasets for broader applicability.', location: 'West Lafayette, Indiana, United States · Remote' },
+    { id: 'dataMinePurdue', company: 'The Data Mine', role: 'Data Science Researcher', period: 'Aug 2023 - May 2024', description: 'Collaborated with Molecular Stethoscope to analyze and develop cf-mRNA based diagnostics. Focused on evaluating dataset robustness and developing synthetic datasets for broader applicability.', location: 'West Lafayette, Indiana, United States · Remote' },
     { id: 'iAppSecure', company: 'iAppSecure Solutions', role: 'Data Science Intern', period: 'May 2023 - Aug 2023', description: 'Enhanced client experience on the dashboard portal by developing data visualizations with ChartJS and performing data extraction from PDFs using Tabula, converting data to TSV format for analysis.', location: 'Ahmedabad, Gujarat, India · On-site' },
     { id: 'mlClubASU', company: 'Machine Learning Club', role: 'Technical Officer', period: 'May 2023 - May 2024', description: 'Developed and delivered presentations to elucidate machine learning concepts and techniques, enhancing educational outreach and understanding within the club.', location: 'Education' },
     { id: 'devilDataScience', company: 'Devil Data Science', role: 'Vice President', period: 'May 2023 - May 2024', description: 'Led the organization and execution of data science events, focusing on promoting essential skills such as Data Visualization, Cleaning, and Communication.', location: 'Education' }
@@ -12,12 +12,12 @@
     <span class="text-secondary dark:text-dark-secondary opacity-85 font-bold tracking-wider text-lg md:text-2xl">Experience:</span>
     <div class="bg-secondary dark:bg-dark-secondary h-[0.2px] w-full"></div>
   </section>
-  <section class="flex md:flex-col items-center md:space-x-4 space-y-4 md:space-y-0 justify-start items-start w-full">
+  <section class="flex flex-col items-start md:flex-row md:space-x-4 space-y-4 md:space-y-0 justify-start w-full"></section>
     <div id="WhereIhaveWorkedSection" class="flex flex-col md:flex-row w-full lg:w-auto overflow-auto px-3">
         {jobs.map(job => (
             <button
-              class="bg-light-button-bg dark:bg-dark-button-bg hover:bg-light-button-hover dark:hover:bg-dark-button-hover text-button-text dark:text-dark-button-text rounded px-4 py-2 m-2 border border-gray-300 dark:border-gray-700 w-full text-left flex flex-col space-y-1"
-              data-key={job.id}
+            class="bg-light-button-bg dark:bg-dark-button-bg hover:bg-light-button-hover dark:hover:bg-dark-button-hover text-button-text dark:text-dark-button-text rounded px-4 py-2 m-2 border border-gray-300 dark:border-gray-700 flex flex-col space-y-1 flex-grow"
+            data-key={job.id}
             >
               <span class="font-semibold">{job.company}</span>
               <span class="text-sm opacity-75">{job.role}</span>
