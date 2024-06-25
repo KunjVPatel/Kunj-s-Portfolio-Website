@@ -4,10 +4,34 @@
 @import 'tailwindcss/utilities';
 /* <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> */
 
-body, h1, h2, p {
-    /* @apply bg-white text-black; */
+:root {
+    --bg-color: #fbfbfb; /* Light mode background */
+    --text-color: #000000; /* Light mode text color */
+    --button-bg: #f3f4f6; /* Light mode button hover background */
+    --navbar-border: #000; /* Light navbar border */
+}
+
+.dark {
+    --bg-color: #191919; /* Dark mode background */
+    --text-color: #FFFFFF; /* Dark mode text color */
+    --button-bg: #374151; /* Dark mode button hover background */
+    --navbar-border: #474747; /* Dark navbar border */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Roboto Mono', monospace;
     font-weight: 500;
+}
+
+.navbar-bg {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--navbar-border);
+}
+
+.navbar-text:hover {
+    background-color: var(--button-bg);
 }
 
 .dark body {
