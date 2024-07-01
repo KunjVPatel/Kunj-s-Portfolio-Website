@@ -63,7 +63,7 @@ data = json.loads(response.text)
 
 To make this tool more accessible, I integrated it into a Discord bot, allowing students to interact with the scraper in real time through a familiar platform. 
 
-![Discord Bot Working](discord_bot.png)
+![Discord Bot Working](_discord_bot.png)
 
 This allowed for people to be able to use this code to get classes that they needed.
 
